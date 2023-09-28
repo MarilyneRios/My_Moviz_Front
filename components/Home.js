@@ -24,7 +24,7 @@ function Home() {
  //---L’url de l’image n’est pas correctement renseignée, modifiez son format pour pouvoir l’afficher
  //--- useEffect unmount et dans return ne pas mettre pour poster => : movie.poster
   useEffect(() => {
-    fetch('http://localhost:3000/movies')
+    fetch('https://my-moviz-back-rouge.vercel.app/movies')
       .then(response => response.json())
       .then(data => {
         const formatedData = data.movies.map(movie => {
