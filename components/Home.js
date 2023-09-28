@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'; //pour utiliser useEffect, l'importer
+import { useState, useEffect } from 'react'; //---pour utiliser useEffect, l'importer---
 
 import { Popover, Button } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,11 +9,11 @@ import styles from '../styles/Home.module.css';
 
 function Home() {
   const [likedMovies, setLikedMovies] = useState([]);
-  const [moviesData, setMoviesData] = useState([]);
+  const [moviesData, setMoviesData] = useState([]); //---Déclarer l’état---
 
 //--- hook d’effet, faites une requête vers le backend webservice afin de remplacer le tableau d’objet moviesData par les données renvoyées par l’API---
   useEffect(() => {
-    fetch('http://localhost:3000/movies')
+    fetch('https://my-moviz-back-rouge.vercel.app/movies')
       .then(response => response.json())
       .then(data => {
         setMoviesData(data.movies);
@@ -32,7 +32,7 @@ function Home() {
           const overview = movie.overview;
 
           if (movie.overview.length > 250) {
-              overview = `${movie.overview.slice(0,250)} “...”`
+              overview = `${movie.overview.substring(0,250)} “...”`;
           }
           return { title: movie.title, poster, voteAverage: movie.vote_average, voteCount: movie.vote_count, overview};
         });
